@@ -1,8 +1,11 @@
 const Web3 = require('web3');
-require('dotenv').config();
 
-const web3 = new Web3(process.env.POOL_RPC_URL);
-const lpWallet = process.env.USER_WALLET;
+const { chains } = require('./chains');
+const { wallets } = require('./wallets');
+
+const polygon = chains.polygon;
+const lpWallet = wallets.polygon.primary;
+const web3 = new Web3(polygon.rpc_url);
 
 async function getRewardTokens(crvGaugeSC, rewardTokens){
     try{
@@ -19,8 +22,6 @@ async function getRewardTokens(crvGaugeSC, rewardTokens){
         console.error(`getRewardTokens Error: ${err.message}`);
         return [];
     }
-    
-
 }
 
 async function checkRewards(crvGaugeSC){
@@ -38,23 +39,20 @@ async function checkRewards(crvGaugeSC){
         console.error(`checkRewards Error: ${err.message}`);
         return [];
     }
-    
 }
 
 async function main(){
-    
     block = await web3.eth.getBlockNumber();
     
     console.log(block);
 
-    const curveGaugeAddr = process.env.POOL_ADDR;
-    const curveGaugeABI = JSON.parse(process.env.POOL_ABI);
+    const curveGaugeAddr = polygon.contracts.eurt.address;
+    const curveGaugeABI = polygon.contracts.eurt.abi;
     const crvGaugeSC = new web3.eth.Contract(curveGaugeABI, curveGaugeAddr);
     rewardTokens = await checkRewards(crvGaugeSC);
     rewardsToClaim = await getRewardTokens(crvGaugeSC, rewardTokens);
     console.log(rewardsToClaim);
     console.log(await web3.eth.getTransactionCount(lpWallet));
-
 }
 
 main();
