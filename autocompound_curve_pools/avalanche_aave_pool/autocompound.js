@@ -29,6 +29,7 @@ async function autoClaimAndCompound(){
     claimed = await attemptRewardClaim(rewardTokens, tokenRewards);
     compounded = await compoundRewards(rewardTokens, tokenRewards);
 }
+
 async function getRewardTokens(smartContract){
     rewardTokens = [];
     rewardToken = '';
@@ -137,4 +138,5 @@ async function getTokenBalance(token){
     }
     return balance;
 }
+
 main();
