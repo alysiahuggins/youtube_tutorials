@@ -44,19 +44,16 @@ async function checkRewards(crvGaugeSC){
 async function main(){
     block = await web3.eth.getBlockNumber();
     
-    console.log(block);
+    console.log(`Current Block ${block}`);
 
     for (i=0; i<polygon.contracts.length; i++) {
-        let curveContract = polygon.contracts[i];
-        // const curveContractName = polygon.contracts
-        // const curveGaugeAddr = polygon.contracts.address;
-        // const curveGaugeABI = polygon.contracts.eurt.abi;
-        let crvGaugeSC = new web3.eth.Contract(curveContract.abi, curveContract.address);
-        rewardTokens = await checkRewards(crvGaugeSC);
-        rewardsToClaim = await getRewardTokens(crvGaugeSC, rewardTokens);
-        console.log(`${curveContract.name}: ${JSON.stringify(rewardsToClaim)}`);
+        const curveContract = polygon.contracts[i];
+        const crvGaugeSC = new web3.eth.Contract(curveContract.abi, curveContract.address);
+        const rewardTokens = await checkRewards(crvGaugeSC);
+        const rewardsToClaim = await getRewardTokens(crvGaugeSC, rewardTokens);
+        console.log(`${curveContract.name} rewards: ${JSON.stringify(rewardsToClaim)}`);
     }
-    console.log(await web3.eth.getTransactionCount(lpWallet));
+    console.log('Transaction Count: ' + await web3.eth.getTransactionCount(lpWallet));
 }
 
 main();
