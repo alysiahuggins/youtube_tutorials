@@ -65,7 +65,7 @@ describe('AgeVerifier', () => {
     expect(updatedNum).toEqual(Field(21));
   });
 
-  it('correctly failes when the person is younger than the agelimit ', async () => {
+  it('correctly fails when the person is younger than the agelimit ', async () => {
     await localDeploy();
 
     // update transaction
@@ -73,6 +73,7 @@ describe('AgeVerifier', () => {
       const txn = await Mina.transaction(senderAccount, () => {
         zkApp.verifyAge(Field(16), Field(20));
       });
+
       await txn.prove();
       await txn.sign([senderKey]).send();
     }catch(e){
@@ -84,7 +85,7 @@ describe('AgeVerifier', () => {
     expect(updatedNum).toEqual(Field(18));
   });
 
-  it('correctly failes when the person tries to update the ageLimit to a number that is too low ', async () => {
+  it('correctly fails when the person tries to update the ageLimit to a number that is too low ', async () => {
     await localDeploy();
 
     // update transaction
