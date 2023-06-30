@@ -1,7 +1,7 @@
 # Mina zkApp: Sound Xyz Voting
 
 This template uses TypeScript.
-See a full tutorial on youtube [here](https://youtu.be/LGuWGZU5AkY)
+See a full tutorial on youtube [here](https://youtu.be/6Jx7_7WForM)
 
 ## How to build
 
