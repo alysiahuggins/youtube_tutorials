@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "deployAliases": {
+    "berkeley": {
+      "url": "https://berkeley.minascan.io/graphql",
+      "keyPath": "keys/berkeley.json",
+      "feepayerKeyPath": "/Users/alysiahuggins/.cache/zkapp-cli/keys/berkeley2.json",
+      "feepayerAlias": "berkeley2",
+      "fee": "0.1",
+      "smartContract": "SoundXYZVoting"
+    }
+  }
+}
