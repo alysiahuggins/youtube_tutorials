@@ -4,3 +4,5 @@
 *keys
 *node_modules
 *package-lock.json
+*coverage
+*build
