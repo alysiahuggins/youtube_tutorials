@@ -1,0 +1,8 @@
+const wallets = {
+    "polygon": {
+        "primary": "0xb05424eb5f8ee658e8e9de3ce9af9d6463517fa9"
+    }
+};
+module.exports = {
+    wallets
+};
